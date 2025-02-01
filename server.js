@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
+const userDataRoutes = require('./routes/userDataRoutes')
 
 dotenv.config();
 const app = express();
@@ -22,8 +23,10 @@ mongoose
 // Use user routes
 app.use('/api/users', userRoutes);
 
+app.use('/api/users', userDataRoutes)
+
 app.get('/', (req, res) => {
-    res.send('Pic-a-Day Backend is Running!');
+  res.status(200).json({ message: "Success"});
 });
 
 // Start the server

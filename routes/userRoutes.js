@@ -21,7 +21,7 @@ router.post('/create', async (req, res) => {
   try {
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
-      return res.status(400).json({ error: 'Email or Username already exists' });
+      return res.status(409).json({ error: 'Email or Username already exists' });
     }
 
     // Hash the password
